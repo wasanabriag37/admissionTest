@@ -6,6 +6,8 @@ import com.sprint3.admission_test.infrastructure.adapter.out.persistence.jpaRepo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
@@ -16,6 +18,18 @@ public class MedicationRepositoryImpl implements IMedicationRepository {
 
     @Override
     public Optional<Medication> findById(Long id) {
+
         return medicationJpaRepository.findById(id);
     }
+
+    @Override
+    public Medication save(Medication medication) {
+        return medicationJpaRepository.save(medication);
+    }
+
+    @Override
+    public Medication findByNameAndExpirationDate(String category, LocalDate date) {
+        return medicationJpaRepository.findByNameAndExpirationDate(category, date);
+    }
+
 }
